@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901525297568",
+    "project_id": "fitathome-copy",
+    "storage_bucket": "fitathome-copy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901525297568:android:1b2c50598b8876572c2cc5",
+        "android_client_info": {
+          "package_name": "com.example.proyek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901525297568-f4jh1av3onmbrv7mhtoq51tgddn8avoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0ttIKBIKkBgrmpvFLWA2RJ1L7pZdYXLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901525297568-f4jh1av3onmbrv7mhtoq51tgddn8avoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
