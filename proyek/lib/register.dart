@@ -15,25 +15,26 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
 
-  final _namaController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmpasswordController = TextEditingController();
+  final namaController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmpasswordController = TextEditingController();
+
   @override
   void dispose() {
-    _namaController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmpasswordController.dispose();
+    namaController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmpasswordController.dispose();
 
     super.dispose();
   }
 
-  final _auth = FirebaseAuth.instance;
-  final _formkey = GlobalKey<FormState>();
+  final auth = FirebaseAuth.instance;
+  final formKey = GlobalKey<FormState>();
 
-  var _passwordVisibility = true;
-  var _passwordConfirmVisibility = true;
+  var passwordVisibility = true;
+  var passwordConfirmVisibility = true;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class _RegisterState extends State<Register> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Form(
-            key: _formkey,
+            key: formKey,
             child: Column(
               children: [
                 Container(
@@ -57,7 +58,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextFormField(
-                    controller:_namaController,
+                    controller: namaController,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
                       prefixIcon: const Icon(Icons.person),
@@ -74,7 +75,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextFormField(
-                    controller: _emailController,
+                    controller: emailController,
                     decoration: const InputDecoration(
                       prefixIcon: const Icon(Icons.email_outlined),
                       border: OutlineInputBorder(),
@@ -90,22 +91,22 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextFormField(
-                    controller: _passwordController,
-                    obscureText: _passwordConfirmVisibility,
+                    controller: passwordController,
+                    obscureText: passwordConfirmVisibility,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.vpn_key),
                       border: OutlineInputBorder(),
                       labelText: "Password",
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _passwordConfirmVisibility
+                          passwordConfirmVisibility
                           ? Icons.visibility
                           : Icons.visibility_off,
                           color: Theme.of(context).primaryColorDark,
                         ),
                         onPressed: () {
                           setState(() {
-                            _passwordConfirmVisibility = !_passwordConfirmVisibility;
+                            passwordConfirmVisibility = !passwordConfirmVisibility;
                           });
                         },
                       )
@@ -123,29 +124,29 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: TextFormField(
-                    controller: _confirmpasswordController,
+                    controller: confirmpasswordController,
                     keyboardType: TextInputType.number,
-                    obscureText: _passwordVisibility,
+                    obscureText: passwordVisibility,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.vpn_key),
                       border: OutlineInputBorder(),
                       labelText: "Confirm Password",
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _passwordVisibility
+                          passwordVisibility
                           ? Icons.visibility
                           : Icons.visibility_off,
                           color: Theme.of(context).primaryColorDark,
                         ),
                         onPressed: () {
                           setState(() {
-                            _passwordVisibility = !_passwordVisibility;
+                            passwordVisibility = !passwordVisibility;
                           });
                         },
                       )
                     ),
                     validator: (value) {
-                      if (value != _passwordController.text) {
+                      if (value != passwordController.text) {
                         return("Password tidak sama!");
                       }
                       if (value!.isEmpty) {
@@ -157,7 +158,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
                   child: ElevatedButton(
-                    onPressed: () {register(_emailController.text.toString(), _passwordController.text.toString());},
+                    onPressed: () {register(emailController.text.toString(), passwordController.text.toString());},
                     child: Text("REGISTER")),
                 )
               ],
@@ -169,26 +170,27 @@ class _RegisterState extends State<Register> {
   }
 
   void register(String email, String pass) async {
-    if (_formkey.currentState!.validate()) {
-      await _auth
+    if(formKey.currentState!.validate()) {
+        await auth
         .createUserWithEmailAndPassword(email: email, password: pass)
         .then((value) => addData())
         .catchError((e) {
           SnackBar(content: Text("${e.message}"));
-        });
-      }
+      });
+    }
+    
   }
 
   addData() async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    User? user = _auth.currentUser;
+    User? user = auth.currentUser;
 
     dcProfile profile = dcProfile();
 
     profile.email = user!.email;
     profile.uid = user.uid;
-    profile.nama = _namaController.text;
-    profile.password = _passwordController.text;
+    profile.nama = namaController.text;
+    profile.password = passwordController.text;
 
     await firestore
       .collection("tbUser")
