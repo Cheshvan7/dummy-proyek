@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyek/dbOlahraga.dart';
+import 'package:video_player/video_player.dart';
 import 'global.dart' as global;
 
 enum WidgetMarker {
@@ -16,6 +17,9 @@ class PilihOlahraga extends StatefulWidget {
 }
 
 class _PilihOlahragaState extends State<PilihOlahraga> {
+
+  late VideoPlayerController _controller;
+  late Future<void> _initVideoPlayerFuture;
 
   final auth = FirebaseAuth.instance;
 
@@ -67,6 +71,7 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
       body: Column(
         children: <Widget> [
           Container(
+            padding: EdgeInsets.all(16),
             width: double.infinity,
             child: DropdownButton(
               isExpanded: true,
@@ -82,6 +87,7 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
               onChanged: callback
             )
           ),
+          customContainer()
           // Expanded(
           //   child: customContainer(),
           // )
@@ -152,29 +158,60 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
     ;
   }
 
-  // Widget customContainer() {
-  //   return null;
-  // }
+  Widget customContainer() {
+    switch (selectedWidgetMarker) {
+      case WidgetMarker.piliholahraga:
+        return pilihContainer();
+      case WidgetMarker.backup:
+        return backupContainer();
+      case WidgetMarker.jumpingjack:
+        return jumpingjackContainer();
+      case WidgetMarker.plank:
+        return plankContainer();
+      case WidgetMarker.pushup:
+        return pushupContainer();
+      case WidgetMarker.situp:
+        return situpContainer();
+    }
+
+    return pilihContainer();
+  }
+
+  Widget pilihContainer() {
+    return Container(
+      child: Text("Pilih ya"),
+    );
+  }
   
-  // Widget backupContainer() {
+  Widget backupContainer() {
+    return Container(
+      child: Text("Back Up"),
+    );
+  }
 
-  // }
+  Widget jumpingjackContainer() {
+    return Container(
+      child: Text("Jumpign Jack"),
+    );
+  }
 
-  // Widget jumpingjackContainer() {
+  Widget plankContainer() {
+    return Container(
+      child: Text("Plank"),
+    );
+  }
 
-  // }
+  Widget pushupContainer() {
+    return Container(
+      child: Text("Push Up"),
+    );
+  }
 
-  // Widget plankContainer() {
-
-  // }
-
-  // Widget pushupContainer() {
-
-  // }
-
-  // Widget situpContainer() {
-
-  // }
+  Widget situpContainer() {
+    return Container(
+      child: Text("Sit Up"),
+    );
+  }
 }
 
 class Model {

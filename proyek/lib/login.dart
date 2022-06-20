@@ -28,14 +28,16 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  final auth = FirebaseAuth.instance;
+
   @override
   void initState() {
-    checkUser();
+    checkUser(auth);
 
     super.initState();
   }
 
-  final auth = FirebaseAuth.instance;
+  
   final formKey = GlobalKey<FormState>();
 
   var passwordVisibility = true;
@@ -137,8 +139,8 @@ class _LoginState extends State<Login> {
     
   }
 
-  void checkUser() {
-    var user = auth.currentUser;
+  void checkUser(FirebaseAuth authentication) {
+    var user = authentication.currentUser;
 
     if (user != null) {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
