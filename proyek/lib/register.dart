@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
             child: Column(
               children: [
                 Container(
-                  child: Image.asset('assets/logofitathomev2.png',height: 100,)
+                  child: Image.asset('assets/logofitathomev2.png',height: 100)
                 ),
                 Container(
                   child: Text("Register", style: TextStyle(fontSize: 20),),
@@ -100,8 +100,8 @@ class _RegisterState extends State<Register> {
                       suffixIcon: IconButton(
                         icon: Icon(
                           passwordConfirmVisibility
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                           color: Theme.of(context).primaryColorDark,
                         ),
                         onPressed: () {
@@ -134,8 +134,8 @@ class _RegisterState extends State<Register> {
                       suffixIcon: IconButton(
                         icon: Icon(
                           passwordVisibility
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                          ? Icons.visibility_off
+                          : Icons.visibility,
                           color: Theme.of(context).primaryColorDark,
                         ),
                         onPressed: () {

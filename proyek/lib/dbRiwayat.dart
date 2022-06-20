@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 CollectionReference tbCatatan = FirebaseFirestore.instance.collection("tbHistory");
 
-class Database {
+class DatabaseRiwayat {
   static Stream<QuerySnapshot> getData(String email) {
 
     return tbCatatan

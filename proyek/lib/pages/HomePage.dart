@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proyek/pilihor.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key }) : super(key: key);
@@ -35,7 +36,9 @@ class _HomePageState extends State<HomePage> {
           Container(
             padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PilihOlahraga()));
+              },
               child: Text("START")),
           ),
           

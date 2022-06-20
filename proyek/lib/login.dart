@@ -81,8 +81,8 @@ class _LoginState extends State<Login> {
                     suffixIcon: IconButton(
                       icon: Icon(
                         passwordVisibility
-                        ? Icons.visibility
-                        : Icons.visibility_off,
+                        ? Icons.visibility_off
+                        : Icons.visibility,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       onPressed: () {
