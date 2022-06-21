@@ -6,17 +6,14 @@ import 'package:proyek/home.dart';
 import 'package:proyek/main.dart';
 import 'package:proyek/register.dart';
 
-
-
 class Login extends StatefulWidget {
-  const Login({ Key? key }) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
   final controllerEmail = TextEditingController();
   final controllerPassword = TextEditingController();
 
@@ -32,12 +29,11 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    checkUser(auth);
+    //checkUser(auth);
 
     super.initState();
   }
 
-  
   final formKey = GlobalKey<FormState>();
 
   var passwordVisibility = true;
@@ -51,72 +47,73 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(16),
-                child: Image.asset('assets/logofitathomev2.png')
-              ),
-              
+                  padding: EdgeInsets.all(16),
+                  child: Image.asset('assets/logofitathomev2.png')),
               Container(
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: TextFormField(
                   controller: controllerEmail,
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.email_outlined),
-                    labelText: "Masukkan Email"
-                  ),
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.email_outlined),
+                      labelText: "Masukkan Email"),
                   validator: (value) {
-                      if (value!.isEmpty) {
-                        return ("Email tidak boleh kosong!");
-                      }
-                    },
+                    if (value!.isEmpty) {
+                      return ("Email tidak boleh kosong!");
+                    }
+                  },
                 ),
               ),
-              
               Container(
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: TextFormField(
                   controller: controllerPassword,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.vpn_key),
-                    labelText: "Masukkan Password",
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        passwordVisibility
-                        ? Icons.visibility_off
-                        : Icons.visibility,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          passwordVisibility = !passwordVisibility;
-                        });
-                      },
-                    )
-                  ),
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.vpn_key),
+                      labelText: "Masukkan Password",
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          passwordVisibility
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            passwordVisibility = !passwordVisibility;
+                          });
+                        },
+                      )),
                   obscureText: passwordVisibility,
                   validator: (value) {
-                      if (value!.isEmpty) {
-                        return ("Password tidak boleh kosong!");
-                      }
-                    },
+                    if (value!.isEmpty) {
+                      return ("Password tidak boleh kosong!");
+                    }
+                  },
                 ),
               ),
-              
               Container(
                 child: ElevatedButton(
-                  onPressed: () {signin(controllerEmail.text.toString(), controllerPassword.text.toString());},
-                  child: Text("Login")),
+                    onPressed: () {
+                      signin(controllerEmail.text.toString(),
+                          controllerPassword.text.toString());
+                    },
+                    child: Text("Login")),
               ),
-              
               Container(
                 padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Column(
                   children: [
                     Text("Belum punya akun ?"),
-                    TextButton(onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
-                    }, child: Text("REGISTER"))
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Register()));
+                        },
+                        child: Text("REGISTER"))
                   ],
                 ),
               )
@@ -127,23 +124,24 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void signin (String email, String pass) async {
+  void signin(String email, String pass) async {
     if (formKey.currentState!.validate()) {
       await auth
-        .signInWithEmailAndPassword(email: email, password: pass)
-        .then((value) => {
-          SnackBar(content: Text("Login sukses")),
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()))
-      });
+          .signInWithEmailAndPassword(email: email, password: pass)
+          .then((value) => {
+                SnackBar(content: Text("Login sukses")),
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Home()))
+              });
     }
-    
   }
 
   void checkUser(FirebaseAuth authentication) {
     var user = authentication.currentUser;
 
     if (user != null) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => Home()));
     }
   }
 }

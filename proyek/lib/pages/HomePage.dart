@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:proyek/pilihor.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +20,14 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            padding: EdgeInsets.all(16),
-            child: Image.asset('assets/logofitathomev2.png', height: 100)
-          ),
+              padding: EdgeInsets.all(16),
+              child: Image.asset('assets/logofitathomev2.png', height: 100)),
           Container(
             padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: Text("Selamat Datang di Fit At Home Application"),
+            child: Text(
+              "Selamat Datang di Fit At Home App",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+            ),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -36,12 +36,12 @@ class _HomePageState extends State<HomePage> {
           Container(
             padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => PilihOlahraga()));
-              },
-              child: Text("START")),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PilihOlahraga()));
+                },
+                child: Text("START")),
           ),
-          
         ],
       ),
     );
