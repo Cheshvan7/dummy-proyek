@@ -16,6 +16,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final auth = FirebaseAuth.instance;
   final _formkey = GlobalKey<FormState>();
+  double? _bmi;
+  String _message = '';
 
   String uid() {
     var user = auth.currentUser;
@@ -28,7 +30,22 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile"),
+        centerTitle: true,
+        title: Text("Your Profile"),
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                logout();
+              },
+              child: Icon(
+                Icons.logout,
+                size: 26,
+              ),
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -39,57 +56,135 @@ class _ProfilePageState extends State<ProfilePage> {
               if (snapshot.connectionState == ConnectionState.done) {
                 Map<String, dynamic> data =
                     snapshot.data!.data() as Map<String, dynamic>;
+                void _calculate() {
+                  setState(() {});
+                }
+
                 return Column(
                   children: [
                     Container(
-                      child: Text('nama:${data['nama']}'),
-                    ),
-                    Container(
-                      child: Text('email:${data['email']}'),
-                    ),
-                    Container(
-                      child: Text('Berat:${data['berat']}'),
-                    ),
-                    Container(
-                      child: Text('Tinggi:${data['tinggi']}'),
+                        padding: EdgeInsets.all(16),
+                        child: Image.asset('assets/logofitathomev2.png',
+                            height: 120)),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(24, 16, 8, 16),
+                          child: Text(
+                            "Nama :",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            '${data['nama']}',
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                      ],
                     ),
                     Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              logout();
-                            },
-                            child: Text("Logout"),
-                            style: ElevatedButton.styleFrom(
-                                primary: Color.fromRGBO(0, 38, 77, 1.0),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 42, vertical: 6),
-                                textStyle: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold)),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
+                          child: Text(
+                            "Email :",
+                            style: TextStyle(fontSize: 24),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => editProfile()))
-                                  .then(onGoBack);
-                            },
-                            child: Text("Edit Profile"),
-                            style: ElevatedButton.styleFrom(
-                                primary: Color.fromRGBO(0, 38, 77, 1.0),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 42, vertical: 6),
-                                textStyle: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold)),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(8, 8, 8, 16),
+                          child: Text('${data['email']}',
+                              style: TextStyle(fontSize: 24)),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
+                          child: Text(
+                            "Berat :",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(11, 8, 8, 16),
+                          child: Text('${data['berat']}',
+                              style: TextStyle(fontSize: 24)),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
+                          child: Text(
+                            "Kg",
+                            style: TextStyle(fontSize: 24),
                           ),
                         )
                       ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
+                          child: Text(
+                            "Tinggi :",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
+                          child: Text('${data['tinggi']}',
+                              style: TextStyle(fontSize: 24)),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
+                          child: Text(
+                            "Cm",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.fromLTRB(27, 8, 8, 16),
+                          child: Text(
+                            "BMI :",
+                            style: TextStyle(fontSize: 24),
+                          ),
+                        ),
+                        Container(
+                            // child: Text(
+                            //   _calculate,
+                            //   style: TextStyle(fontSize: 24),
+                            // ),
+                            ),
+                        Container(
+                          child: Text(
+                            _message,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top: 16),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => editProfile()))
+                              .then(onGoBack);
+                        },
+                        child: Text("Edit Profile"),
+                        style: ElevatedButton.styleFrom(
+                            primary: Color.fromRGBO(0, 38, 77, 1.0),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 6),
+                            textStyle: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold)),
+                      ),
                     ),
                   ],
                 );
