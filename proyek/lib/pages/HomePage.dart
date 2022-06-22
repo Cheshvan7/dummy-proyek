@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyek/pilihor.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+//import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

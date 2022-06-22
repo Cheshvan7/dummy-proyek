@@ -39,7 +39,7 @@ dependencies:
   firebase_auth: ^3.3.19
   carousel_slider: ^4.1.1
   video_player:
-
+  youtube_player_flutter: ^8.1.0
 
 dev_dependencies:
   flutter_test:
