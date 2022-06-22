@@ -38,8 +38,9 @@ dependencies:
   cloud_firestore: ^3.1.17
   firebase_auth: ^3.3.19
   carousel_slider: ^4.1.1
-  video_player:
   youtube_player_flutter: ^8.1.0
+  flutter_countdown_timer: ^4.1.0
+  assets_audio_player: ^3.0.4+3
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/backup.jpg
     - assets/jumpingjack.jpg
     - assets/plank.jpg
+    - assets/audio/ringing.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:

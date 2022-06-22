@@ -42,6 +42,7 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Icon(
                 Icons.logout,
                 size: 26,
+                color: Colors.red,
               ),
             ),
           )

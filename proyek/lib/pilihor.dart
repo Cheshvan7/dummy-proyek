@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:proyek/dbOlahraga.dart';
-import 'package:video_player/video_player.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 enum WidgetMarker {
   piliholahraga, backup, jumpingjack, plank, pushup, situp
@@ -26,37 +29,29 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
   @override
   void initState() {
     super.initState();
-    //_controllerVideoPlayer = VideoPlayerController.network("https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4");
-
-    //_initVideoPlayerFuture = _controllerVideoPlayer.initialize();
   }
 
-  @override
+  /*@override
   void dispose() {
-    //_controllerVideoPlayer.dispose();
-    _controllerYoutubeBackup.dispose();
-    _controllerYoutubeJumpingJack.dispose();
-    _controllerYoutubePlank.dispose();
-    _controllerYoutubePushUp.dispose();
-    _controllerYoutubeSitUp.dispose();
-
-    _youtubePlayerController.dispose();
+    // _controllerYoutubeBackup.dispose();
+    // _controllerYoutubeJumpingJack.dispose();
+    // _controllerYoutubePlank.dispose();
+    // _controllerYoutubePushUp.dispose();
+    // _controllerYoutubeSitUp.dispose();
 
     super.dispose();
-  }
+  }*/
 
-  @override
+  /*@override
   void deactivate() {
-   _controllerYoutubeBackup.pause();
+    _controllerYoutubeBackup.pause();
     _controllerYoutubeJumpingJack.pause();
     _controllerYoutubePlank.pause();
     _controllerYoutubePushUp.pause();
     _controllerYoutubeSitUp.pause();
 
-    _youtubePlayerController.pause();
-
     super.deactivate();
-  }
+  }*/
 
   int checker = 0;
 
@@ -73,89 +68,52 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
 
         if (selectedValue == "Pilih Olahraga") {
           selectedWidgetMarker = WidgetMarker.piliholahraga;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         } else if (selectedValue == "Back Up") {
           selectedWidgetMarker = WidgetMarker.backup;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         } else if (selectedValue == "Jumping Jack") {
           selectedWidgetMarker = WidgetMarker.jumpingjack;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         }  else if (selectedValue == "Plank") {
           selectedWidgetMarker = WidgetMarker.plank;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         } else if (selectedValue == "Push Up") {
           selectedWidgetMarker = WidgetMarker.pushup;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         } else if (selectedValue == "Sit Up") {
           selectedWidgetMarker = WidgetMarker.situp;
-          // if (checker == 1) {
-          //   _controllerYoutubeBackup.dispose();
-          // } else if (checker == 2) {
-          //   _controllerYoutubeJumpingJack.dispose();
-          // } else if (checker == 3) {
-          //   _controllerYoutubePlank.dispose();
-          // } else if (checker == 4) {
-          //   _controllerYoutubePushUp.dispose();
-          // } else if (checker == 5) {
-          //   _controllerYoutubeSitUp.dispose();
-          // }
         }
       });
     }
   }
 
+  late Timer _timer;
+  int _start = 10;
+
   @override
   Widget build(BuildContext context) {
+
+    final _audio = AssetsAudioPlayer();
+    
+    void startTimer() {
+      const oneSecond = const Duration(seconds: 1);
+      _timer = Timer.periodic(
+          oneSecond,
+          (Timer timer) {
+            if (_start == 0) {
+              setState(() {
+                _audio.open(
+                  Audio("assets/audio/ringing.mp3")
+                );
+                _audio.play();
+                timer.cancel();
+                _start = 10;
+              });
+            } else {
+              setState(() {
+                _start--;
+              });
+            }
+          }
+        );
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Pilih Olahraga"),
@@ -181,9 +139,17 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
             )
           ),
           customContainer(),
-          // Expanded(
-          //   child: customContainer(),
-          // )
+          Container(
+            child: ElevatedButton(
+              onPressed: () {
+                startTimer();
+              },
+              child: Text("Start Timer"),
+            )
+          ),
+          Container(
+            child: Text("${_start}"),
+          )
         ],
       )
     );
@@ -204,20 +170,13 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
       case WidgetMarker.situp:
         return situpContainer();
     }
-
-    return pilihContainer();
   }
-
-  //late VideoPlayerController _controllerVideoPlayer;
-  //late Future<void> _initVideoPlayerFuture;
 
   late YoutubePlayerController _controllerYoutubeBackup;
   late YoutubePlayerController _controllerYoutubeJumpingJack;
   late YoutubePlayerController _controllerYoutubePlank;
   late YoutubePlayerController _controllerYoutubePushUp;
   late YoutubePlayerController _controllerYoutubeSitUp;
-
-  late YoutubePlayerController _youtubePlayerController;
 
   Widget pilihContainer() {
     checker = 0;
@@ -241,7 +200,7 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
 
     return Column(
       children: [
-        Container(child: Text("Jumping Jack Ini")),
+        Container(child: Text("Back Up Ini")),
         Container(
           child: YoutubePlayerBuilder(
             player: YoutubePlayer(
@@ -255,22 +214,6 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
         ),
       ],
     );
-
-    /*return FutureBuilder(
-      future: _initVideoPlayerFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return AspectRatio(
-            aspectRatio: _controllerVideoPlayer.value.aspectRatio,
-            child: VideoPlayer(_controllerVideoPlayer),
-          );
-        } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      },
-    );*/
   }
 
   Widget jumpingjackContainer() {
