@@ -34,15 +34,14 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text("Your Profile"),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: EdgeInsets.only(right: 8.0),
             child: GestureDetector(
               onTap: () {
                 logout();
               },
-              child: Icon(
-                Icons.logout,
-                size: 26,
-                color: Colors.red,
+              child: IconButton(
+                icon: Icon(Icons.logout, color: Colors.red,),
+                onPressed: () {logout();},
               ),
             ),
           )
@@ -62,129 +61,140 @@ class _ProfilePageState extends State<ProfilePage> {
                 }
 
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                        padding: EdgeInsets.all(16),
-                        child: Image.asset('assets/logofitathomev2.png',
-                            height: 120)),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 16, 8, 16),
-                          child: Text(
-                            "Nama :",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            '${data['nama']}',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
-                          child: Text(
-                            "Email :",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(8, 8, 8, 16),
-                          child: Text('${data['email']}',
-                              style: TextStyle(fontSize: 24)),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
-                          child: Text(
-                            "Berat :",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(11, 8, 8, 16),
-                          child: Text('${data['berat']}',
-                              style: TextStyle(fontSize: 24)),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
-                          child: Text(
-                            "Kg",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(24, 8, 8, 16),
-                          child: Text(
-                            "Tinggi :",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
-                          child: Text('${data['tinggi']}',
-                              style: TextStyle(fontSize: 24)),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(0, 8, 8, 16),
-                          child: Text(
-                            "Cm",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.fromLTRB(27, 8, 8, 16),
-                          child: Text(
-                            "BMI :",
-                            style: TextStyle(fontSize: 24),
-                          ),
-                        ),
-                        Container(
-                            // child: Text(
-                            //   _calculate,
-                            //   style: TextStyle(fontSize: 24),
-                            // ),
-                            ),
-                        Container(
-                          child: Text(
-                            _message,
-                          ),
-                        ),
-                      ],
+                      padding: EdgeInsets.all(16),
+                      child: Image.asset('assets/logofitathomev2.png', height: 120)
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 16),
+                      margin: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: Color(0xff79dddd),
+                      ),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: Icon(Icons.person, size: 35,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(data['nama'], style: TextStyle(fontSize: 20),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: Color(0xff79dddd),
+                      ),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: Icon(Icons.email, size: 35,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text(data['email'], style: TextStyle(fontSize: 20),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: Color(0xff79dddd),
+                      ),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: Icon(Icons.monitor_weight, size: 35,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text("${data['berat']} kg", style: TextStyle(fontSize: 20),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: Color(0xff79dddd),
+                      ),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: Icon(Icons.height, size: 35,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text("${data['tinggi']} cm", style: TextStyle(fontSize: 20),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32),
+                        color: Color(0xff79dddd),
+                      ),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                              child: Icon(Icons.calculate, size: 35,),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Text("${data['bmi']}", style: TextStyle(fontSize: 20),),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(16),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => editProfile()))
-                              .then(onGoBack);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => editProfile())).then(onGoBack);
                         },
                         child: Text("Edit Profile"),
                         style: ElevatedButton.styleFrom(
-                            primary: Color.fromRGBO(0, 38, 77, 1.0),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 42, vertical: 6),
-                            textStyle: const TextStyle(
-                                fontSize: 24, fontWeight: FontWeight.bold)),
+                          primary: Color.fromRGBO(0, 38, 77, 1.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 42, vertical: 6),
+                          textStyle: const TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
                       ),
                     ),
                   ],
@@ -208,9 +218,6 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       user = FirebaseFirestore.instance.collection('tbUser');
     });
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Berhasil Edit Data"),
-    ));
   }
 
   void logout() {

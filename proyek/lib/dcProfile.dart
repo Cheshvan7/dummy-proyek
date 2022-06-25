@@ -5,6 +5,7 @@ class dcProfile {
   String? berat;
   String? tinggi;
   String? password;
+  String? bmi;
 
   dcProfile({
     this.uid,
@@ -12,7 +13,8 @@ class dcProfile {
     this.nama,
     this.berat,
     this.tinggi,
-    this.password
+    this.password,
+    this.bmi
   });
 
   factory dcProfile.fromJson(json) {
@@ -22,7 +24,8 @@ class dcProfile {
       nama: json['nama'],
       berat: json['berat'],
       tinggi: json['tinggi'],
-      password: json['password']
+      password: json['password'],
+      bmi: json['bmi']
     );
   }
 
@@ -33,7 +36,8 @@ class dcProfile {
       "nama": nama,
       "berat": berat,
       "tinggi": tinggi,
-      "password": password
+      "password": password,
+      "bmi": bmi
     };
   }
 

@@ -13,6 +13,9 @@ Future<void> main() async {
 
   runApp(MaterialApp(
     title: "Fit At Home",
+    //themeMode: ThemeMode.dark,
+    //theme: ThemeData.dark(),
+    //darkTheme: ThemeData.dark(),
     home: MyApp(),
   ));
 }

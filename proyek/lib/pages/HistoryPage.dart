@@ -47,18 +47,48 @@ class _HistoryPageState extends State<HistoryPage> {
                     return ListView.separated(
                         itemBuilder: (context, index) {
                           DocumentSnapshot data = snapshot.data!.docs[index];
+                          String lvOlahraga = data['olahraga'];
                           String lvTanggal = data['tanggal'];
                           String lvKalori = data['kalori'];
                           String lvDurasi = data['durasi'];
-                          return ListTile(
-                              onTap: () {},
-                              onLongPress: () {},
-                              title: Text(lvTanggal),
-                              subtitle:
-                                  Text("$lvDurasi menit \n$lvKalori kalori"));
+                          String lvJam = data['jam'];
+                          return Card(
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                color: Colors.black
+                              ),
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
+                            child: Container(
+                              margin: EdgeInsets.all(8),
+                              child: ListTile(
+                                onTap: () {},
+                                onLongPress: () {},
+                                title: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Text(lvOlahraga),
+                                ),
+                                subtitle: Container(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("$lvDurasi menit"),
+                                      Text("$lvKalori kalori"),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Text("$lvTanggal\n$lvJam", textAlign: TextAlign.right,)
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                )
+                              ),
+                            ),
+                          ) ;
                         },
                         separatorBuilder: (context, index) =>
-                            SizedBox(height: 8),
+                          SizedBox(height: 8),
                         itemCount: snapshot.data!.docs.length);
                   } else {
                     return const Center(

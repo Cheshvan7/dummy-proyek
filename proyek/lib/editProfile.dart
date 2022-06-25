@@ -129,6 +129,9 @@ class _editProfileState extends State<editProfile> {
       update.berat = berat_;
       update.tinggi = tinggi_;
       await firestore.collection('tbUser').doc(user.uid).set(update.toJson());
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Berhasil Edit Data"),
+      ));
       Navigator.pop(context);
       //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
     }
