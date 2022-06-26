@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:proyek/alarm.dart';
 import 'package:proyek/pages/HistoryPage.dart';
 import 'package:proyek/pages/HomePage.dart';
 import 'package:proyek/pages/ProfilePage.dart';
 
 class Home extends StatefulWidget {
-  const Home({ Key? key }) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   int _currentIndex = 0;
 
-  final _pages = [
-    HomePage(),
-    HistoryPage(),
-    ProfilePage()
-  ];
+  final _pages = [HomePage(), HistoryPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {

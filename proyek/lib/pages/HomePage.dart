@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyek/pilihor.dart';
+import 'package:proyek/alarm.dart';
 //import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +17,27 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home"),
         centerTitle: true,
+        actions: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(right: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => alarm()));
+              },
+              child: IconButton(
+                icon: Icon(
+                  Icons.alarm_add_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => alarm()));
+                },
+              ),
+            ),
+          )
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
