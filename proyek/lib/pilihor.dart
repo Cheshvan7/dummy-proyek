@@ -197,20 +197,22 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff00264d),
         title: Text("Pilih Olahraga"),
       ),
 
       body: Column(
         children: <Widget> [
           Container(
-            
+            color: Color(0xff6bc5c5),
             margin: EdgeInsets.all(16),
             width: double.infinity,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black38, width: 3),
+                border: Border.all(),
               ),
               child: DropdownButton(
+                style: TextStyle(color: Colors.black),
                 isExpanded: true,
                 items: const [
                   DropdownMenuItem(child: Padding(
@@ -299,15 +301,23 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
           ),
         ),
         Container(
-          child: ElevatedButton(
-            onPressed: () {
-              startTimer();
-            },
-            child: Text("Start Timer"),
-          )
-        ),
-        Container(
-          child: Text("${_start} detik"),
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("${_start} detik", style: TextStyle(fontSize: 22),),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    startTimer();
+                  },
+                  child: Text("Start Timer", style: TextStyle(color: Colors.black)),
+                )
+              ),
+            ]
+          ),
         )
       ],
     );
@@ -329,15 +339,23 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
           ),
         ),
         Container(
-          child: ElevatedButton(
-            onPressed: () {
-              startTimer();
-            },
-            child: Text("Start Timer"),
-          )
-        ),
-        Container(
-          child: Text("${_start} detik"),
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("${_start} detik", style: TextStyle(fontSize: 22),),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    startTimer();
+                  },
+                  child: Text("Start Timer", style: TextStyle(color: Colors.black)),
+                )
+              ),
+            ]
+          ),
         )
       ],
     );
@@ -366,15 +384,23 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
           ),
         ),
         Container(
-          child: ElevatedButton(
-            onPressed: () {
-              startTimer();
-            },
-            child: Text("Start Timer"),
-          )
-        ),
-        Container(
-          child: Text("${_start} detik"),
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("${_start} detik", style: TextStyle(fontSize: 22),),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    startTimer();
+                  },
+                  child: Text("Start Timer", style: TextStyle(color: Colors.black)),
+                )
+              ),
+            ]
+          ),
         )
       ],
     );
@@ -396,15 +422,23 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
           ),
         ),
         Container(
-          child: ElevatedButton(
-            onPressed: () {
-              startTimer();
-            },
-            child: Text("Start Timer"),
-          )
-        ),
-        Container(
-          child: Text("${_start} detik"),
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("${_start} detik", style: TextStyle(fontSize: 22),),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    startTimer();
+                  },
+                  child: Text("Start Timer", style: TextStyle(color: Colors.black)),
+                )
+              ),
+            ]
+          ),
         )
       ],
     );
@@ -425,15 +459,23 @@ class _PilihOlahragaState extends State<PilihOlahraga> {
             }
           ),
           Container(
-          child: ElevatedButton(
-            onPressed: () {
-              startTimer();
-            },
-            child: Text("Start Timer"),
-          )
-        ),
-        Container(
-          child: Text("${_start} detik"),
+          height: 200,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                child: Text("${_start} detik", style: TextStyle(fontSize: 22),),
+              ),
+              Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    startTimer();
+                  },
+                  child: Text("Start Timer", style: TextStyle(color: Colors.black)),
+                )
+              ),
+            ]
+          ),
         )
         ],
       ),

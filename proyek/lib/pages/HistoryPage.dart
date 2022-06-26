@@ -32,6 +32,7 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff00264d),
         title: Text("Riwayat"),
         centerTitle: true,
       ),
@@ -53,9 +54,10 @@ class _HistoryPageState extends State<HistoryPage> {
                           String lvDurasi = data['durasi'];
                           String lvJam = data['jam'];
                           return Card(
+                            color: Color(0xff002245),
                             shape: RoundedRectangleBorder(
                               side: BorderSide(
-                                color: Colors.black
+                                color: Colors.lightBlueAccent
                               ),
                             borderRadius: BorderRadius.all(Radius.circular(12)),
                             ),
@@ -66,18 +68,18 @@ class _HistoryPageState extends State<HistoryPage> {
                                 onLongPress: () {},
                                 title: Padding(
                                   padding: const EdgeInsets.only(bottom: 8.0),
-                                  child: Text(lvOlahraga),
+                                  child: Text(lvOlahraga, style: TextStyle(color: Colors.white),),
                                 ),
                                 subtitle: Container(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("$lvDurasi menit"),
-                                      Text("$lvKalori kalori"),
+                                      Text("$lvDurasi menit", style: TextStyle(color: Colors.white)),
+                                      Text("$lvKalori kalori", style: TextStyle(color: Colors.white)),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
-                                          Text("$lvTanggal\n$lvJam", textAlign: TextAlign.right,)
+                                          Text("$lvTanggal\n$lvJam", textAlign: TextAlign.right, style: TextStyle(color: Colors.white))
                                         ],
                                       )
                                     ],

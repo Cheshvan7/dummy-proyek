@@ -38,6 +38,7 @@ class _editProfileState extends State<editProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff00264d),
         title: Text("Edit Profile"),
       ),
       body: SingleChildScrollView(
@@ -53,7 +54,7 @@ class _editProfileState extends State<editProfile> {
                     controller: _inputNamaController,
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person, color: Colors.white,),
                         border: OutlineInputBorder(),
                         labelText: "Masukan Nama"),
                     validator: (value) {
@@ -69,7 +70,7 @@ class _editProfileState extends State<editProfile> {
                     controller: _inputBeratController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.monitor_weight_rounded),
+                        prefixIcon: const Icon(Icons.monitor_weight_rounded, color: Colors.white,),
                         border: OutlineInputBorder(),
                         labelText: "Masukan Berat Badan"),
                     validator: (value) {
@@ -85,7 +86,7 @@ class _editProfileState extends State<editProfile> {
                     controller: _inputTinggiController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.height_rounded),
+                        prefixIcon: const Icon(Icons.height_rounded, color: Colors.white,),
                         border: OutlineInputBorder(),
                         labelText: "Masukan Tinggi Badan"),
                     validator: (value) {
@@ -99,6 +100,9 @@ class _editProfileState extends State<editProfile> {
                   width: double.infinity,
                   padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff00264d)
+                    ),
                     onPressed: () {
                       editProfile(
                           _inputNamaController.text.toString(),

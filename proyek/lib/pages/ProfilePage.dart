@@ -32,6 +32,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Profile"),
+        backgroundColor: Color.fromRGBO(0, 38, 77, 1.0),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 8.0),
@@ -80,7 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        border: Border.all(),
+                        border: Border.all(color: Colors.white),
                         //color: Color(0xff79dddd),
                       ),
                       child: Container(
@@ -104,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        border: Border.all(),
+                        border: Border.all(color: Colors.white),
                       ),
                       child: Container(
                         width: 300,
@@ -127,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        border: Border.all(),
+                        border: Border.all(color: Colors.white),
                       ),
                       child: Container(
                         width: 300,
@@ -150,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        border: Border.all(),
+                        border: Border.all(color: Colors.white),
                       ),
                       child: Container(
                         width: 300,
@@ -173,7 +174,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        border: Border.all(),
+                        border: Border.all(color: Colors.white),
                       ),
                       child: Container(
                         width: 300,
@@ -198,13 +199,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => editProfile())).then(onGoBack);
                         },
-                        child: Text("Edit Profile"),
+                        child: Text("Edit Profile",  style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16)),
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(0, 38, 77, 1.0),
+                          primary: Color(0xff6bc5c5),
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 42, vertical: 6),
+                            horizontal: 42, vertical: 6),
                           textStyle: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            )
                         ),
                       ),
                     ),

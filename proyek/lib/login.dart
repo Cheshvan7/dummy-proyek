@@ -52,10 +52,11 @@ class _LoginState extends State<Login> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.white),
                   controller: controllerEmail,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email_outlined),
+                      prefixIcon: Icon(Icons.email_outlined, color: Color(0xff6bc5c5)),
                       labelText: "Masukkan Email"),
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -67,10 +68,11 @@ class _LoginState extends State<Login> {
               Container(
                 padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                 child: TextFormField(
+                  style: TextStyle(color: Colors.white),
                   controller: controllerPassword,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.vpn_key),
+                      prefixIcon: Icon(Icons.vpn_key, color: Color(0xff6bc5c5)),
                       labelText: "Masukkan Password",
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -101,7 +103,7 @@ class _LoginState extends State<Login> {
                       signin(controllerEmail.text.toString(),
                           controllerPassword.text.toString());
                     },
-                    child: Text("Login")),
+                    child: Text("Login", style: TextStyle(color: Colors.black, fontSize: 16))),
               ),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
