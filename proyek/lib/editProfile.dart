@@ -162,29 +162,4 @@ class _editProfileState extends State<editProfile> {
       //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
     }
   }
-// //gak tau bener apa ngga :v
-//   editData() async {
-//     FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-//     User? user = _auth.currentUser;
-
-//     dcProfile profile = dcProfile();
-
-//     profile.nama = _inputNamaController.text;
-//     profile.berat = _inputBeratController.text;
-//     profile.tinggi = _inputTinggiController.text;
-
-//     await firestore
-//         .collection("tbUser")
-//         .doc(user?.uid)
-//         .update(profile.toJson());
-//     SnackBar(
-//       content: Text("profile telah dibuat"),
-//     );
-
-//     // await _auth
-//     //     .update(_nama: _inputNamaController)
-//     //     .whenComplete(() => print("data berhasil diubah"))
-//     //     .catchError((e) => print(e));
-//   }
 }
