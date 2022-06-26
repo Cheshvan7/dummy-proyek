@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -46,13 +48,7 @@ class _editProfileState extends State<editProfile> {
             child: Column(
               children: [
                 Container(
-                  child: Text(
-                    "Edit Profilemu",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: TextFormField(
                     controller: _inputNamaController,
                     keyboardType: TextInputType.name,
@@ -68,7 +64,7 @@ class _editProfileState extends State<editProfile> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: TextFormField(
                     controller: _inputBeratController,
                     keyboardType: TextInputType.number,
@@ -84,7 +80,7 @@ class _editProfileState extends State<editProfile> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: TextFormField(
                     controller: _inputTinggiController,
                     keyboardType: TextInputType.number,
@@ -100,7 +96,8 @@ class _editProfileState extends State<editProfile> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  width: double.infinity,
+                  padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: ElevatedButton(
                     onPressed: () {
                       editProfile(
@@ -108,7 +105,7 @@ class _editProfileState extends State<editProfile> {
                           _inputBeratController.text.toString(),
                           _inputTinggiController.text.toString());
                     },
-                    child: Text("UPDATE PROFILE"),
+                    child: Text("UPDATE"),
                   ),
                 )
               ],
@@ -119,15 +116,40 @@ class _editProfileState extends State<editProfile> {
     );
   }
 
+  String _bmi = "";
+  String _bmiskor = "";
+
+  void calculate_bmi (String berat, String tinggi) {
+    double b = double.parse(berat);
+    double t = double.parse(tinggi) / 100;
+
+    double bbmi = b / (pow(t, 2));
+
+    _bmiskor = bbmi.toStringAsFixed(2);
+
+    if (bbmi < 18.5) {
+      _bmi = "Underweight";
+    } else if (bbmi >= 18.5 && bbmi <= 24.9) {
+      _bmi = "Normal";
+    } else if (bbmi >= 25 && bbmi <= 29.9) {
+      _bmi = "Overweight";
+    } else if (bbmi >= 30) {
+      _bmi = "Obese";
+    }
+  }
+
   void editProfile(String nama_, String berat_, String tinggi_) async {
     var firestore = FirebaseFirestore.instance;
     var user = auth.currentUser;
     if (formKey.currentState!.validate()) {
       dcProfile update = dcProfile();
+      calculate_bmi(berat_, tinggi_);
       update.email = user!.email;
       update.nama = nama_;
       update.berat = berat_;
       update.tinggi = tinggi_;
+      update.bmi = _bmi;
+      update.bmiskor = _bmiskor;
       await firestore.collection('tbUser').doc(user.uid).set(update.toJson());
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Berhasil Edit Data"),

@@ -71,6 +71,7 @@ flutter:
     - assets/backup.jpg
     - assets/jumpingjack.jpg
     - assets/plank.jpg
+    - assets/johndoe.png
     - assets/audio/ringing.mp3
 
   # To add assets to your application, add an assets section, like this:

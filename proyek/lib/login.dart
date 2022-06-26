@@ -94,6 +94,8 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(16),
                 child: ElevatedButton(
                     onPressed: () {
                       signin(controllerEmail.text.toString(),

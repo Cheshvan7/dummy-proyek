@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Your Profile"),
+        title: Text("Profile"),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 8.0),
@@ -63,15 +63,25 @@ class _ProfilePageState extends State<ProfilePage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Container(
-                      padding: EdgeInsets.all(16),
-                      child: Image.asset('assets/logofitathomev2.png', height: 120)
+                    Center(
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        padding: EdgeInsets.all(16),
+                        child: ClipOval(
+                          child: SizedBox.fromSize(
+                            size: Size.fromRadius(48),
+                            child: Image.network('https://ek.polmed.ac.id/wp-content/uploads/sites/7/2020/12/author-1.jpg', fit: BoxFit.cover,),
+                          ),
+                        )
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        color: Color(0xff79dddd),
+                        border: Border.all(),
+                        //color: Color(0xff79dddd),
                       ),
                       child: Container(
                         width: 300,
@@ -94,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        color: Color(0xff79dddd),
+                        border: Border.all(),
                       ),
                       child: Container(
                         width: 300,
@@ -117,7 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        color: Color(0xff79dddd),
+                        border: Border.all(),
                       ),
                       child: Container(
                         width: 300,
@@ -140,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        color: Color(0xff79dddd),
+                        border: Border.all(),
                       ),
                       child: Container(
                         width: 300,
@@ -163,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       margin: EdgeInsets.fromLTRB(16, 0, 16, 16),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(32),
-                        color: Color(0xff79dddd),
+                        border: Border.all(),
                       ),
                       child: Container(
                         width: 300,
@@ -172,11 +182,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-                              child: Icon(Icons.calculate, size: 35,),
+                              child: Icon(Icons.accessibility, size: 35,),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 16),
-                              child: Text("${data['bmi']}", style: TextStyle(fontSize: 20),),
+                              child: Text("${data['bmiskor']} (${data['bmi']})", style: TextStyle(fontSize: 20),),
                             )
                           ],
                         ),
@@ -194,7 +204,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 42, vertical: 6),
                           textStyle: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold)),
+                              fontSize: 20, fontWeight: FontWeight.bold)
+                        ),
                       ),
                     ),
                   ],

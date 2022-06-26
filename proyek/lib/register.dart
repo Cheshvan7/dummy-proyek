@@ -188,9 +188,7 @@ class _RegisterState extends State<Register> {
     dcProfile profile = dcProfile();
 
     profile.email = user!.email;
-    profile.uid = user.uid;
     profile.nama = namaController.text;
-    profile.password = passwordController.text;
 
     await firestore
       .collection("tbUser")
