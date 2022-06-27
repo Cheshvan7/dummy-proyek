@@ -44,73 +44,63 @@ class _alarmState extends State<alarm> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          body: Center(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff00264d),
+        title: Text("Reminder Olahraga"),
+        centerTitle: true,
+      ),
+      body: Center(
         child: Column(
           children: <Widget>[
             SizedBox(height: 30),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
-                ),
-                Icon(
-                  Icons.alarm,
-                  size: 100,
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 16, 0, 0),
+                Container(
+                    padding: EdgeInsets.all(16),
+                    child: Image.asset('assets/picforalarm.png')),
+                Container(
+                  padding: EdgeInsets.all(16),
+                  child: Text(
+                    "Alarm Reminder Olahraga akan membantumu untuk olahraga secara rutin setiap hari.",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 Container(
                   width: 300,
+                  padding: EdgeInsets.only(top: 16),
                   child: ElevatedButton(
                     onPressed: () {
                       selectTime(context);
                     },
                     child: Text(
                       "Atur Alarm",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
                   ),
-                )
-              ],
-            ),
-            Container(
-              width: 250,
-              margin: const EdgeInsets.all(25),
-              child: ElevatedButton(
-                child: const Text(
-                  'Create alarm',
-                  style: TextStyle(fontSize: 20.0),
                 ),
-                onPressed: () {
-                  FlutterAlarmClock.createAlarm(jam, menit,
-                      title: "Waktunya Olahraga");
-                },
-              ),
+                Container(
+                  padding: EdgeInsets.only(top: 16),
+                  width: 300,
+                  child: ElevatedButton(
+                    child: Text(
+                      'Aktifkan Alarm',
+                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    ),
+                    onPressed: () {
+                      FlutterAlarmClock.createAlarm(jam, menit,
+                          title: "Waktunya Olahraga");
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      )
-          // Container(
-          //   margin: const EdgeInsets.all(25),
-          //   child: TextButton(
-          //     child: const Text(
-          //       'Set Alarm',
-          //       style: TextStyle(fontSize: 20.0),
-          //     ),
-          //     onPressed: () {
-          //       int jam;
-          //       int menit;
-          //       jam = int.parse(jamController.text);
-          //       menit = int.parse(menitController.text);
-          //       FlutterAlarmClock.createAlarm(jam, menit);
-          //     },
-          //   ),
-          // ),
-          ),
+      ),
     );
   }
 }
